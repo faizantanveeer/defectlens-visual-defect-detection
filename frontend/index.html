@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visual Defect Detection</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%234f46e5'/><circle cx='15' cy='15' r='7' fill='none' stroke='white' stroke-width='3'/><path d='M20 20l6 6' stroke='white' stroke-width='3' stroke-linecap='round'/></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M16 16l5 5"/></svg>
+      </span>
+      <div>
+        <h1 id="app-title">Visual Defect Detection</h1>
+        <p class="subtitle">Normal vs defective product inspection</p>
+      </div>
+    </div>
+    <div class="status" id="status" title="API status">
+      <span class="dot"></span><span id="status-text">Connecting…</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel input-panel">
+      <div id="dropzone" class="dropzone" tabindex="0" role="button"
+           aria-label="Upload images: click, drop files, or paste">
+        <svg class="dz-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 16V4m0 0l-4 4m4-4l4 4"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
+        </svg>
+        <p class="dz-title">Drop product images here</p>
+        <p class="dz-hint">or <span class="link">browse</span> · paste with Ctrl+V · up to 16 at once</p>
+        <input id="file-input" type="file" accept="image/*" multiple hidden>
+      </div>
+
+      <div class="samples">
+        <div class="section-head">
+          <h2>Try a sample</h2>
+          <button id="run-all-btn" class="ghost" type="button" title="Send all samples in one batch request">Run all</button>
+        </div>
+        <div id="sample-list" class="sample-list"></div>
+      </div>
+
+      <div class="model-card" id="model-card">
+        <h2>Model</h2>
+        <dl>
+          <div><dt>Version</dt><dd id="m-version">–</dd></div>
+          <div><dt>Backbone</dt><dd id="m-backbone">–</dd></div>
+          <div><dt>Threshold</dt><dd id="m-threshold">–</dd></div>
+          <div><dt>Review band</dt><dd id="m-review">–</dd></div>
+          <div><dt>Input</dt><dd id="m-input">–</dd></div>
+        </dl>
+        <p class="muted small">API: <code id="api-url"></code> · <a id="docs-link" target="_blank" rel="noopener">docs</a></p>
+      </div>
+    </section>
+
+    <section class="panel results-panel">
+      <div class="section-head">
+        <h2>Results</h2>
+        <div class="summary" id="summary"></div>
+        <button id="clear-btn" class="ghost" type="button" hidden>Clear</button>
+      </div>
+      <div id="empty" class="empty">
+        <p>No inspections yet.</p>
+        <p class="muted small">Upload an image or pick a sample to see the prediction, confidence and timing.</p>
+      </div>
+      <div id="results" class="results"></div>
+    </section>
+  </main>
+
+  <template id="card-tpl">
+    <article class="card">
+      <div class="thumb"><img alt=""></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="filename"></span>
+          <span class="badge"></span>
+        </div>
+        <div class="metrics">
+          <div><span class="label">Confidence</span><span class="value conf">–</span></div>
+          <div><span class="label">P(defective)</span><span class="value prob">–</span></div>
+        </div>
+        <div class="meter" aria-hidden="true">
+          <div class="band"></div>
+          <div class="fill"></div>
+          <div class="thr"></div>
+        </div>
+        <div class="meter-scale"><span>0</span><span class="thr-label"></span><span>1</span></div>
+        <div class="card-foot">
+          <span class="review" hidden>Needs manual review</span>
+          <span class="timing muted small"></span>
+        </div>
+        <p class="error-msg" hidden></p>
+      </div>
+    </article>
+  </template>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

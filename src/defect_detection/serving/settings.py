@@ -34,6 +34,9 @@ class Settings(BaseSettings):
     ort_intra_op_threads: int = Field(0, ge=0)  # 0 = onnxruntime default
 
     api_key: str | None = None  # if set, clients must send X-API-Key
+    # Browser origins allowed to call the API (the bundled test UI runs on :5173).
+    # Env: VDD_CORS_ORIGINS='["https://inspect.example.com"]'; empty list disables CORS.
+    cors_origins: list[str] = ["http://localhost:5173", "http://127.0.0.1:5173"]
     log_level: str = "INFO"
     json_logs: bool = True
 

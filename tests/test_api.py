@@ -111,3 +111,12 @@ def test_startup_fails_fast_without_model(tmp_path):
     app = create_app(Settings(model_dir=tmp_path, json_logs=False))
     with pytest.raises(Exception, match="bundle incomplete"), TestClient(app):
         pass
+
+
+def test_cors_allows_configured_origin_only(client):
+    ok = client.options("/v1/predict", headers={"Origin": "http://localhost:5173",
+                                                "Access-Control-Request-Method": "POST"})
+    assert ok.headers.get("access-control-allow-origin") == "http://localhost:5173"
+    bad = client.options("/v1/predict", headers={"Origin": "http://evil.example",
+                                                 "Access-Control-Request-Method": "POST"})
+    assert "access-control-allow-origin" not in bad.headers

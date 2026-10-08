@@ -24,6 +24,7 @@ from contextlib import asynccontextmanager
 from fastapi import Depends, FastAPI, File, Header, Request, UploadFile
 from fastapi.concurrency import run_in_threadpool
 from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
 from prometheus_client import CONTENT_TYPE_LATEST, CollectorRegistry, Counter, Gauge, Histogram, generate_latest
 from starlette.exceptions import HTTPException as StarletteHTTPException
@@ -114,6 +115,14 @@ def create_app(settings: Settings | None = None, predictor: DefectPredictor | No
     )
     app.state.metrics = metrics
     app.state.settings = settings
+    if settings.cors_origins:
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=settings.cors_origins,
+            allow_methods=["GET", "POST"],
+            allow_headers=["*"],
+            expose_headers=["X-Request-ID"],
+        )
 
     # ------------------------------------------------------------------ middleware
     @app.middleware("http")

@@ -47,6 +47,22 @@ docker run -p 8000:8000 defect-detection-api
 curl -F "file=@examples/images/defective_scratch.png" http://localhost:8000/v1/predict
 ```
 
+### Test UI (Windows, one click)
+
+Double-click **`start.bat`**. It finds the Python environment, checks the model bundle, starts the API
+(`:8000`) and the web UI (`:5173`) in their own windows, waits until the model is loaded, and opens the
+browser. `stop.bat` (or closing the two windows) shuts everything down. If a healthy API is already on
+port 8000 (e.g. the Docker container), it reuses it.
+
+<img src="docs/ui.png" width="720" alt="Test UI: upload or pick a sample, see class, confidence, P(defective) against the threshold and review band, and timing">
+
+The UI (`frontend/`, plain HTML/CSS/JS with no build step) supports drag-and-drop, browse, paste
+(Ctrl+V), one-click samples, and "Run all" (one batch request). Each result shows the class, confidence,
+P(defective) on a bar with the threshold and review band, a *Needs manual review* flag, and the
+timing breakdown. It follows the system light/dark theme. Settings (title, API URL) live in
+`frontend/config.js`. On macOS/Linux: `vdd serve` and `python scripts/serve_frontend.py`, then open
+http://localhost:5173.
+
 ### Local development
 
 Python 3.10+ (developed on 3.13, the container uses 3.12). CPU-only PyTorch is enough.
@@ -56,7 +72,7 @@ python -m venv .venv && source .venv/bin/activate        # Windows: .venv\Script
 pip install --extra-index-url https://download.pytorch.org/whl/cpu -r requirements/dev.txt
 pip install --no-deps -e .
 
-pytest                       # 53 tests: preprocessing, data/split, metrics, predictor, API
+pytest                       # 54 tests: preprocessing, data/split, metrics, predictor, API
 vdd serve --port 8000        # API from artifacts/model
 ```
 
@@ -477,7 +493,7 @@ e.g. `VDD_THRESHOLD_OVERRIDE` sets a stricter operating point per line without r
 * **[`deploy/k8s.yaml`](deploy/k8s.yaml)**: Deployment (readiness/liveness probes, non-root, read-only
   root filesystem), Service, and an HPA on CPU.
 * **[`Dockerfile.train`](Dockerfile.train)**: reproducible CPU training environment.
-* **[CI](.github/workflows/ci.yml)**: lint + 53 tests, then builds the image and smoke-tests a real prediction.
+* **[CI](.github/workflows/ci.yml)**: lint + 54 tests, then builds the image and smoke-tests a real prediction.
 
 **Scaling model:** the service is stateless, with one worker per container and capped ONNX Runtime
 threads (`VDD_ORT_INTRA_OP_THREADS=2`). It scales **horizontally** with replicas, which keeps per-pod
@@ -570,10 +586,11 @@ src/defect_detection/
   inference/predictor.py           ONNX Runtime predictor (no torch)
   evaluation/  metrics · evaluate · error_analysis (Grad-CAM) · cross_validation · robustness · benchmark · compare
   serving/     FastAPI app · settings · schemas
-tests/                             53 tests (tiny synthetic ONNX model, so tests don't need the trained weights)
+tests/                             54 tests (tiny synthetic ONNX model, so tests don't need the trained weights)
 artifacts/model/                   promoted production bundle (model.onnx + metadata.json)
 reports/                           EDA, evaluation, error analysis, CV, robustness, comparison
 deploy/                            Kubernetes + Prometheus config
-scripts/                           demo client, load test
+scripts/                           demo client, load test, test-UI static server
+frontend/                          test UI (HTML/CSS/JS, no build step) - started by start.bat
 docs/                              architecture, video walkthrough script
 ```

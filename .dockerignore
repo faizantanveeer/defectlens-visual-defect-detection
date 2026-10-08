@@ -14,3 +14,5 @@ notebooks
 *.log
 artifacts/*
 !artifacts/model
+frontend
+*.bat
