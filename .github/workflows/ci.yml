@@ -1,0 +1,37 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: |
+          pip install --extra-index-url https://download.pytorch.org/whl/cpu -r requirements/dev.txt
+          pip install --no-deps -e .
+      - name: Lint
+        run: ruff check src tests
+      - name: Test
+        run: pytest
+
+  docker:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build API image
+        run: docker build -t defect-detection-api:ci .
+      - name: Smoke test container
+        run: |
+          docker run -d --name api -p 8000:8000 defect-detection-api:ci
+          for i in $(seq 1 30); do curl -sf localhost:8000/health/ready && break; sleep 1; done
+          curl -sf -F "file=@examples/images/normal_example.png" localhost:8000/v1/predict
+          docker logs api

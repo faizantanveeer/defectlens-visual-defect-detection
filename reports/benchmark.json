@@ -1,0 +1,27 @@
+{
+  "model_version": "mobilenet_v3_large-20261008061215",
+  "input_size": 224,
+  "cpu_count": 8,
+  "ort_intra_op_threads": "default",
+  "onnx_size_mb": 16.81,
+  "preprocess_700px_to_input": {
+    "p50_ms": 5.294,
+    "p95_ms": 19.243,
+    "p99_ms": 33.785,
+    "mean_ms": 7.961
+  },
+  "onnx_batch1_inference": {
+    "p50_ms": 5.116,
+    "p95_ms": 13.311,
+    "p99_ms": 22.308,
+    "mean_ms": 6.391
+  },
+  "torch_eager_batch1_inference": {
+    "p50_ms": 23.81,
+    "p95_ms": 62.967,
+    "p99_ms": 78.87,
+    "mean_ms": 28.67
+  },
+  "batch_8_images_per_s": 232.4,
+  "batch_32_images_per_s": 223.2
+}

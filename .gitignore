@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.env
+
+# Data: re-created by `vdd download` (MVTec AD is CC BY-NC-SA, not redistributed here).
+data/raw/
+data/masks/
+data/_download/
+
+# Training runs (checkpoints are large); the promoted model in artifacts/model IS committed.
+artifacts/runs/
+artifacts/*.log

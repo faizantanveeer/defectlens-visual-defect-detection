@@ -1,0 +1,26 @@
+{
+  "total_files": 335,
+  "valid_images": 335,
+  "invalid_images": 0,
+  "normal": 242,
+  "defective": 93,
+  "defective_fraction": 0.2776,
+  "imbalance_ratio_normal_to_defective": 2.602,
+  "per_type": {
+    "defective/bent": 25,
+    "defective/color": 22,
+    "defective/flip": 23,
+    "defective/scratch": 23,
+    "normal/none": 242
+  },
+  "image_sizes": {
+    "700x700": 335
+  },
+  "modes": {
+    "RGB": 335
+  },
+  "exact_duplicates": 0,
+  "near_duplicate_groups_gt1": 0,
+  "largest_duplicate_group": 1,
+  "smallest_defect_side_px_at_input": 14.8
+}

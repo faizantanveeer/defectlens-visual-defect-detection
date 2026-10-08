@@ -1,0 +1,8 @@
+{
+  "threshold": 0.5000728326995159,
+  "false_positives": 0,
+  "false_negatives": 0,
+  "near_threshold_cases": 0,
+  "pointing_game_hit_rate_tp": 0.8421052631578947,
+  "max_torch_onnx_prob_diff": 9.794212019187483e-08
+}

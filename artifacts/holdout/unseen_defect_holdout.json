@@ -1,0 +1,42 @@
+[
+  {
+    "held_out_type": "bent",
+    "n_held_out": 25,
+    "recall_unseen_type": 0.6,
+    "mean_p_unseen_type": 0.6429104030132293,
+    "recall_seen_types": 1.0,
+    "false_reject_rate": 0.0,
+    "auc_unseen_vs_normal": 0.9816666666666666,
+    "threshold": 0.5
+  },
+  {
+    "held_out_type": "color",
+    "n_held_out": 22,
+    "recall_unseen_type": 0.4090909090909091,
+    "mean_p_unseen_type": 0.3862142264842987,
+    "recall_seen_types": 1.0,
+    "false_reject_rate": 0.0,
+    "auc_unseen_vs_normal": 0.8896780303030303,
+    "threshold": 0.5
+  },
+  {
+    "held_out_type": "flip",
+    "n_held_out": 23,
+    "recall_unseen_type": 0.9130434782608695,
+    "mean_p_unseen_type": 0.9120369514693385,
+    "recall_seen_types": 0.9285714285714286,
+    "false_reject_rate": 0.0,
+    "auc_unseen_vs_normal": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "held_out_type": "scratch",
+    "n_held_out": 23,
+    "recall_unseen_type": 0.391304347826087,
+    "mean_p_unseen_type": 0.36907256427018537,
+    "recall_seen_types": 1.0,
+    "false_reject_rate": 0.0,
+    "auc_unseen_vs_normal": 0.9637681159420289,
+    "threshold": 0.5
+  }
+]

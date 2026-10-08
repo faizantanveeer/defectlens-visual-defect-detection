@@ -1,0 +1,30 @@
+services:
+  api:
+    build: .
+    image: defect-detection-api:latest
+    ports:
+      - "8000:8000"
+    environment:
+      VDD_LOG_LEVEL: INFO
+      VDD_MAX_CONCURRENT_INFERENCES: "4"
+      VDD_ORT_INTRA_OP_THREADS: "2"
+      # VDD_API_KEY: change-me            # enable to require X-API-Key
+      # VDD_THRESHOLD_OVERRIDE: "0.3"     # stricter operating point without re-export
+    # volumes:
+    #   - ./artifacts/model:/app/model:ro  # hot-swap a model bundle without rebuilding
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 1g
+    restart: unless-stopped
+
+  # Optional: `docker compose --profile monitoring up` -> Prometheus on :9090
+  prometheus:
+    image: prom/prometheus:v2.53.0
+    profiles: ["monitoring"]
+    volumes:
+      - ./deploy/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    depends_on: [api]

@@ -1,0 +1,189 @@
+[
+  {
+    "file": "defective_bent.png",
+    "status": 200,
+    "request_id": "eee4c6b70916444c940864e339fe60e1",
+    "model_version": "mobilenet_v3_large-20261008061215",
+    "filename": "defective_bent.png",
+    "prediction": {
+      "predicted_class": "defective",
+      "confidence": 0.999012,
+      "defect_probability": 0.999012,
+      "threshold": 0.5000728326995159,
+      "review_recommended": false
+    },
+    "timing": {
+      "decode_ms": 29.885,
+      "preprocess_ms": 5.451,
+      "inference_ms": 6.22,
+      "total_ms": 42.229
+    }
+  },
+  {
+    "file": "defective_color.png",
+    "status": 200,
+    "request_id": "4f047dda41264712b062cf34c38c3725",
+    "model_version": "mobilenet_v3_large-20261008061215",
+    "filename": "defective_color.png",
+    "prediction": {
+      "predicted_class": "defective",
+      "confidence": 1.0,
+      "defect_probability": 1.0,
+      "threshold": 0.5000728326995159,
+      "review_recommended": false
+    },
+    "timing": {
+      "decode_ms": 28.024,
+      "preprocess_ms": 5.92,
+      "inference_ms": 6.868,
+      "total_ms": 41.548
+    }
+  },
+  {
+    "file": "defective_flip.png",
+    "status": 200,
+    "request_id": "d100d6aa998947ff8acc06118751316d",
+    "model_version": "mobilenet_v3_large-20261008061215",
+    "filename": "defective_flip.png",
+    "prediction": {
+      "predicted_class": "defective",
+      "confidence": 1.0,
+      "defect_probability": 1.0,
+      "threshold": 0.5000728326995159,
+      "review_recommended": false
+    },
+    "timing": {
+      "decode_ms": 24.084,
+      "preprocess_ms": 3.968,
+      "inference_ms": 6.16,
+      "total_ms": 34.824
+    }
+  },
+  {
+    "file": "defective_scratch.png",
+    "status": 200,
+    "request_id": "90440ed8d48d446785ee6158250ec125",
+    "model_version": "mobilenet_v3_large-20261008061215",
+    "filename": "defective_scratch.png",
+    "prediction": {
+      "predicted_class": "defective",
+      "confidence": 1.0,
+      "defect_probability": 1.0,
+      "threshold": 0.5000728326995159,
+      "review_recommended": false
+    },
+    "timing": {
+      "decode_ms": 21.755,
+      "preprocess_ms": 5.478,
+      "inference_ms": 5.932,
+      "total_ms": 34.063
+    }
+  },
+  {
+    "file": "normal_example.png",
+    "status": 200,
+    "request_id": "7df72f6ac8d64534803e303bc8e94c09",
+    "model_version": "mobilenet_v3_large-20261008061215",
+    "filename": "normal_example.png",
+    "prediction": {
+      "predicted_class": "normal",
+      "confidence": 0.999995,
+      "defect_probability": 5e-06,
+      "threshold": 0.5000728326995159,
+      "review_recommended": false
+    },
+    "timing": {
+      "decode_ms": 21.56,
+      "preprocess_ms": 4.955,
+      "inference_ms": 6.333,
+      "total_ms": 33.504
+    }
+  },
+  {
+    "file": "normal_example_2.png",
+    "status": 200,
+    "request_id": "7746fd6144e049aea13e44ad15b5943c",
+    "model_version": "mobilenet_v3_large-20261008061215",
+    "filename": "normal_example_2.png",
+    "prediction": {
+      "predicted_class": "normal",
+      "confidence": 0.999996,
+      "defect_probability": 4e-06,
+      "threshold": 0.5000728326995159,
+      "review_recommended": false
+    },
+    "timing": {
+      "decode_ms": 20.335,
+      "preprocess_ms": 4.887,
+      "inference_ms": 5.879,
+      "total_ms": 31.66
+    }
+  },
+  {
+    "file": "corrupt.png",
+    "status": 422,
+    "error": {
+      "code": "invalid_image",
+      "message": "unsupported or unrecognised image format"
+    },
+    "request_id": "95fd4190db4c4c8bb48b2f17fdc4cfd2"
+  },
+  {
+    "file": "batch(4)",
+    "status": 200,
+    "request_id": "e004f9bb397044518a17f6ea5e7cabf8",
+    "model_version": "mobilenet_v3_large-20261008061215",
+    "results": [
+      {
+        "filename": "defective_bent.png",
+        "prediction": {
+          "predicted_class": "defective",
+          "confidence": 0.999012,
+          "defect_probability": 0.999012,
+          "threshold": 0.5000728326995159,
+          "review_recommended": false
+        },
+        "error": null
+      },
+      {
+        "filename": "defective_color.png",
+        "prediction": {
+          "predicted_class": "defective",
+          "confidence": 1.0,
+          "defect_probability": 1.0,
+          "threshold": 0.5000728326995159,
+          "review_recommended": false
+        },
+        "error": null
+      },
+      {
+        "filename": "defective_flip.png",
+        "prediction": {
+          "predicted_class": "defective",
+          "confidence": 1.0,
+          "defect_probability": 1.0,
+          "threshold": 0.5000728326995159,
+          "review_recommended": false
+        },
+        "error": null
+      },
+      {
+        "filename": "defective_scratch.png",
+        "prediction": {
+          "predicted_class": "defective",
+          "confidence": 1.0,
+          "defect_probability": 1.0,
+          "threshold": 0.5000728326995159,
+          "review_recommended": false
+        },
+        "error": null
+      }
+    ],
+    "timing": {
+      "decode_ms": 76.432,
+      "preprocess_ms": 29.2,
+      "inference_ms": 41.807,
+      "total_ms": 148.183
+    }
+  }
+]

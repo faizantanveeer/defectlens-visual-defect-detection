@@ -1,0 +1,56 @@
+# Default (production) experiment. Override any key from the CLI, e.g.
+#   vdd train --config configs/train.yaml --set train.backbone=efficientnet_b0 --set experiment_name=effb0
+experiment_name: mobilenet_v3_large
+artifacts_dir: artifacts
+
+data:
+  raw_dir: data/raw
+  manifest_path: data/manifest.csv
+  split_path: data/splits/split.csv
+  val_fraction: 0.15
+  test_fraction: 0.20
+  near_duplicate_hamming: 10  # bits of a 256-bit dHash
+  seed: 42
+
+preprocess:
+  image_size: 224
+  mean: [0.485, 0.456, 0.406]   # ImageNet statistics (backbones are ImageNet-pretrained)
+  std: [0.229, 0.224, 0.225]
+
+augment:
+  rotation_degrees: 180   # parts are rotation-invariant on the line
+  translate: 0.05
+  scale: [0.95, 1.05]
+  brightness: 0.15        # lighting drift between shifts / cameras
+  contrast: 0.15
+  blur_prob: 0.1          # mild focus / motion blur
+  hflip: false            # mirroring == "flip" defect for chiral parts -> label noise
+  vflip: false
+
+train:
+  backbone: mobilenet_v3_large
+  pretrained: true
+  batch_size: 16
+  head_epochs: 3
+  finetune_epochs: 30
+  warmup_epochs: 2        # linear LR warm-up at the start of fine-tuning
+  head_lr: 1.0e-3
+  backbone_lr: 1.0e-4
+  weight_decay: 1.0e-4
+  dropout: 0.2
+  freeze_bn_stats: true   # small data + batch 16: keep pretrained BN statistics (see config.py)
+  imbalance_strategy: pos_weight
+  early_stopping_patience: 8
+  num_workers: 2
+  device: auto
+
+threshold:
+  strategy: f_beta
+  beta: 2.0
+  min_recall: 0.95
+  search_bounds: [0.05, 0.95]  # saturated scores + tiny val set: never let one example pull t to ~0
+  review_margin: 0.15
+
+evaluation:
+  bootstrap_iterations: 2000
+  gradcam_correct_per_type: 2

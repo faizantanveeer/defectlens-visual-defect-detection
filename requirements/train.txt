@@ -1,0 +1,12 @@
+# Training / evaluation (pinned; CPU torch wheels: --extra-index-url https://download.pytorch.org/whl/cpu)
+-r serve.txt
+matplotlib==3.11.2
+onnx==1.23.2
+onnxscript==0.7.2
+pandas==3.0.6
+pyarrow==25.0.1
+scikit-learn==1.9.1
+scipy==1.18.1
+tabulate==0.10.0
+torch==2.10.0+cpu
+torchvision==0.25.0+cpu

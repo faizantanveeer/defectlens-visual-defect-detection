@@ -1,0 +1,67 @@
+# Reference Kubernetes deployment: stateless replicas behind a Service, autoscaled on CPU.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: defect-detection-api
+  labels: { app: defect-detection-api }
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: defect-detection-api }
+  template:
+    metadata:
+      labels: { app: defect-detection-api }
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: /metrics
+    spec:
+      securityContext: { runAsNonRoot: true, runAsUser: 10001 }
+      containers:
+        - name: api
+          image: defect-detection-api:latest   # pin to an immutable tag/digest in practice
+          ports: [{ containerPort: 8000 }]
+          env:
+            - { name: VDD_ORT_INTRA_OP_THREADS, value: "2" }
+            - { name: VDD_MAX_CONCURRENT_INFERENCES, value: "4" }
+          resources:
+            requests: { cpu: "1", memory: 512Mi }
+            limits: { cpu: "2", memory: 1Gi }
+          readinessProbe:
+            httpGet: { path: /health/ready, port: 8000 }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet: { path: /health/live, port: 8000 }
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - { name: tmp, mountPath: /tmp }   # multipart uploads >1MB spool to /tmp
+      volumes:
+        - name: tmp
+          emptyDir: { sizeLimit: 256Mi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: defect-detection-api
+spec:
+  selector: { app: defect-detection-api }
+  ports: [{ port: 80, targetPort: 8000 }]
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: defect-detection-api
+spec:
+  scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: defect-detection-api }
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: { type: Utilization, averageUtilization: 70 }

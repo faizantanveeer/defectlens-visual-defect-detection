@@ -1,0 +1,159 @@
+{
+  "folds": 5,
+  "n_images": 335,
+  "pooled_oof_at_fold_thresholds": {
+    "threshold": 0.5,
+    "tp": 91,
+    "fp": 1,
+    "tn": 241,
+    "fn": 2,
+    "precision": 0.9891304347826086,
+    "recall": 0.978494623655914,
+    "specificity": 0.9958677685950413,
+    "f1": 0.9837837837837837,
+    "f2": 0.9806034482758621,
+    "accuracy": 0.991044776119403,
+    "balanced_accuracy": 0.9871811961254777,
+    "false_positive_rate": 0.004132231404958678,
+    "false_negative_rate": 0.021505376344086023
+  },
+  "pooled_ci95_exact": {
+    "recall": [
+      0.9244670279474917,
+      0.9973849053028669
+    ],
+    "specificity": [
+      0.9771929751206815,
+      0.9998953864311236
+    ],
+    "precision": [
+      0.9409221488501852,
+      0.9997248442972293
+    ]
+  },
+  "pooled_ranking_indicative": {
+    "roc_auc": 0.9874477916999911,
+    "average_precision": 0.9792125377541411
+  },
+  "per_fold": [
+    {
+      "fold": 0,
+      "n": 67,
+      "threshold": 0.5,
+      "best_epoch": 18,
+      "precision": 0.95,
+      "recall": 1.0,
+      "specificity": 0.9791666666666666,
+      "f1": 0.9743589743589743,
+      "tp": 19,
+      "fp": 1,
+      "fn": 0,
+      "roc_auc": 0.9884868421052632,
+      "average_precision": 0.9448907356109573
+    },
+    {
+      "fold": 1,
+      "n": 67,
+      "threshold": 0.5,
+      "best_epoch": 13,
+      "precision": 1.0,
+      "recall": 1.0,
+      "specificity": 1.0,
+      "f1": 1.0,
+      "tp": 19,
+      "fp": 0,
+      "fn": 0,
+      "roc_auc": 1.0,
+      "average_precision": 1.0
+    },
+    {
+      "fold": 2,
+      "n": 67,
+      "threshold": 0.5,
+      "best_epoch": 9,
+      "precision": 1.0,
+      "recall": 1.0,
+      "specificity": 1.0,
+      "f1": 1.0,
+      "tp": 19,
+      "fp": 0,
+      "fn": 0,
+      "roc_auc": 1.0,
+      "average_precision": 1.0
+    },
+    {
+      "fold": 3,
+      "n": 67,
+      "threshold": 0.5,
+      "best_epoch": 22,
+      "precision": 1.0,
+      "recall": 0.9444444444444444,
+      "specificity": 1.0,
+      "f1": 0.9714285714285714,
+      "tp": 17,
+      "fp": 0,
+      "fn": 1,
+      "roc_auc": 1.0,
+      "average_precision": 1.0
+    },
+    {
+      "fold": 4,
+      "n": 67,
+      "threshold": 0.5,
+      "best_epoch": 18,
+      "precision": 1.0,
+      "recall": 0.9444444444444444,
+      "specificity": 1.0,
+      "f1": 0.9714285714285714,
+      "tp": 17,
+      "fp": 0,
+      "fn": 1,
+      "roc_auc": 0.9614512471655329,
+      "average_precision": 0.9593698175787728
+    }
+  ],
+  "fold_mean": {
+    "precision": 0.99,
+    "recall": 0.9777777777777779,
+    "specificity": 0.9958333333333332,
+    "f1": 0.9834432234432235,
+    "average_precision": 0.9808521106379459
+  },
+  "fold_std": {
+    "precision": 0.022360679774997918,
+    "recall": 0.030429030972509243,
+    "specificity": 0.009316949906249141,
+    "f1": 0.015161472614765165,
+    "average_precision": 0.026714389427686305
+  },
+  "per_defect_type": [
+    {
+      "defect_type": "bent",
+      "n": 25,
+      "detected": 25,
+      "min_p": 0.9617701768875122,
+      "recall": 1.0
+    },
+    {
+      "defect_type": "color",
+      "n": 22,
+      "detected": 22,
+      "min_p": 0.9873567223548889,
+      "recall": 1.0
+    },
+    {
+      "defect_type": "flip",
+      "n": 23,
+      "detected": 23,
+      "min_p": 0.9999595880508423,
+      "recall": 1.0
+    },
+    {
+      "defect_type": "scratch",
+      "n": 23,
+      "detected": 21,
+      "min_p": 0.0,
+      "recall": 0.9130434782608695
+    }
+  ]
+}

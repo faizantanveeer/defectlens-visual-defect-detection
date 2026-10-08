@@ -1,0 +1,42 @@
+{
+  "model_version": "mobilenet_v3_large-20261008061215",
+  "package_version": "1.0.0",
+  "created_utc": "2026-10-08T06:12:15.712860+00:00",
+  "backbone": "mobilenet_v3_large",
+  "class_names": [
+    "normal",
+    "defective"
+  ],
+  "positive_class": "defective",
+  "preprocess": {
+    "image_size": 224,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "input": {
+    "name": "image",
+    "layout": "NCHW",
+    "dtype": "float32"
+  },
+  "output": {
+    "name": "defect_probability",
+    "meaning": "P(defective)"
+  },
+  "threshold": 0.5000728326995159,
+  "threshold_strategy": "f_beta",
+  "review_margin": 0.15,
+  "best_epoch": 18,
+  "val_average_precision": 1.0,
+  "experiment_name": "mobilenet_v3_large",
+  "onnx_opset": 17,
+  "model_sha256": "1ac6ea4abba4e97d2dd822f0b5cbaee435c1f0fc877918d7f121d73a6553854b",
+  "parity_max_abs_diff": 5.960464477539063e-08
+}

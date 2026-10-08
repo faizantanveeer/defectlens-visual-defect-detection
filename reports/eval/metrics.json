@@ -1,0 +1,114 @@
+{
+  "split": "test",
+  "n": 67,
+  "n_defective": 19,
+  "n_normal": 48,
+  "model_version": "mobilenet_v3_large-20261008061215",
+  "threshold": 0.5000728326995159,
+  "at_threshold": {
+    "threshold": 0.5000728326995159,
+    "tp": 19,
+    "fp": 0,
+    "tn": 48,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "specificity": 1.0,
+    "f1": 1.0,
+    "f2": 1.0,
+    "accuracy": 1.0,
+    "balanced_accuracy": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.0
+  },
+  "at_0.5": {
+    "threshold": 0.5,
+    "tp": 19,
+    "fp": 0,
+    "tn": 48,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "specificity": 1.0,
+    "f1": 1.0,
+    "f2": 1.0,
+    "accuracy": 1.0,
+    "balanced_accuracy": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.0
+  },
+  "roc_auc": 1.0,
+  "average_precision": 1.0,
+  "expected_calibration_error": 1.972068601581134e-05,
+  "review_rate": 0.0,
+  "ci95_at_threshold": {
+    "precision": [
+      1.0,
+      1.0
+    ],
+    "recall": [
+      1.0,
+      1.0
+    ],
+    "specificity": [
+      1.0,
+      1.0
+    ],
+    "f1": [
+      1.0,
+      1.0
+    ],
+    "average_precision": [
+      1.0,
+      1.0
+    ],
+    "roc_auc": [
+      0.9999999999999999,
+      1.0
+    ]
+  },
+  "ci95_exact_binomial": {
+    "recall": [
+      0.8235330881930346,
+      1.0
+    ],
+    "specificity": [
+      0.9260272146527198,
+      1.0
+    ],
+    "precision": [
+      0.8235330881930346,
+      1.0
+    ]
+  },
+  "per_defect_type": [
+    {
+      "defect_type": "bent",
+      "n": 5,
+      "detected": 5,
+      "mean_p": 0.9998,
+      "recall": 1.0
+    },
+    {
+      "defect_type": "color",
+      "n": 4,
+      "detected": 4,
+      "mean_p": 1.0,
+      "recall": 1.0
+    },
+    {
+      "defect_type": "flip",
+      "n": 5,
+      "detected": 5,
+      "mean_p": 1.0,
+      "recall": 1.0
+    },
+    {
+      "defect_type": "scratch",
+      "n": 5,
+      "detected": 5,
+      "mean_p": 1.0,
+      "recall": 1.0
+    }
+  ]
+}

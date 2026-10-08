@@ -1,0 +1,15 @@
+# Reproducible training environment (CPU). Data and artifacts are mounted, not baked in.
+#   docker build -f Dockerfile.train -t defect-detection-train .
+#   docker run --rm -v "$PWD/data:/app/data" -v "$PWD/artifacts:/app/artifacts" -v "$PWD/reports:/app/reports" \
+#       defect-detection-train sh -c "vdd download && vdd prepare && vdd pipeline && vdd promote"
+FROM python:3.12-slim
+ENV PIP_NO_CACHE_DIR=1 PIP_DISABLE_PIP_VERSION_CHECK=1 PYTHONUNBUFFERED=1 MPLBACKEND=Agg
+WORKDIR /app
+COPY requirements/ requirements/
+RUN pip install --extra-index-url https://download.pytorch.org/whl/cpu -r requirements/train.txt
+COPY pyproject.toml README.md ./
+COPY src ./src
+COPY configs ./configs
+RUN pip install --no-deps -e .
+ENTRYPOINT []
+CMD ["vdd", "--help"]

@@ -1,0 +1,29 @@
+{
+  "backbone": "mobilenet_v3_large",
+  "best_epoch": 18,
+  "epochs_run": 26,
+  "best_val_ap": 1.0,
+  "best_val_loss": 5.725739802252136e-06,
+  "train_seconds": 507.6,
+  "threshold": 0.5000728326995159,
+  "threshold_strategy": "f_beta",
+  "val_metrics_at_threshold": {
+    "threshold": 0.5000728326995159,
+    "tp": 14,
+    "fp": 0,
+    "tn": 37,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "specificity": 1.0,
+    "f1": 1.0,
+    "f2": 1.0,
+    "accuracy": 1.0,
+    "balanced_accuracy": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.0
+  },
+  "parameters": 4203313,
+  "train_size": 217,
+  "val_size": 51
+}
